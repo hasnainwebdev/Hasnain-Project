@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #ffffff;
+            /* Light gray background */
+        }
+
+        .contact-container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 30px;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .contact-container h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #333;
+            /* Dark gray text */
+        }
+
+        .contact-container p {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .contact-options {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .contact-option {
+            background-color: #fff;
+            /* White background for each option */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            /* Center text within each option */
+            width: 200px;
+            justify-content: space-evenly;
+
+        }
+
+        .contact-option .icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #333;
+            /* Dark gray icon color */
+        }
+
+        .contact-option h3 {
+            margin-bottom: 10px;
+            color: #333;
+            /* Dark gray heading color */
+        }
+
+        .contact-option p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .contact-option img {
+            width: 7vw;
+        }
+
+        .logo {}
+
+        .logo img {
+            width: 80px;
+
+        }
+
+        .icon {
+            font-size: 15px;
+            cursor: pointer;
+            ;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-links li a:hover {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-links li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1.9px;
+            bottom: -2px;
+            left: 0;
+            background-color: black;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .nav-links li a:hover::after {
+            width: 100%;
+
+        }
+
+        .cart-count {
+            text-decoration: none;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        /* Second Navbar */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .secondNavbar {
+            background-color: white;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: auto;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin-left: 170px;
+
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: #f5f5f5;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            background-color: transparent;
+            padding-left: 10px;
+            font-size: 14px;
+        }
+
+        .search-icon {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .icon {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .icon {
+            font-size: 15px;
+            cursor: pointer;
+            ;
+        }
+
+        .cart-count {
+            text-decoration: none;
+            background-color: rgb(0, 0, 0);
+            color: white;
+            border-radius: 50%;
+            padding: 2px;
+        }
+    </style>
+    <link rel="shortcut icon" href="/Assets/nike logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <!-- Second Navbar Section -->
+    <section class="secondNavbar">
+        <nav class="navbar">
+            <!-- Logo Section -->
+            <div class="logo">
+                <a href="Mainpage.html"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg"
+                        alt="Logo" class="logo-img"></a>
+            </div>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="products.html">New</a></li>
+                <li><a href="men-section.html">Men</a></li>
+                <li><a href="women-section.html">Women</a></li>
+                <li><a href="kids-section.html">Kids</a></li>
+                <li><a href="products.html">Jordan</a></li>
+            </ul>
+
+            <!-- Search and Icons -->
+            <div class="nav-icons">
+                <div class="search-bar">
+                    <input type="text" placeholder="Search">
+                    <span class="search-icon"><img src="/Assets/search Icon.svg" alt=""></span>
+                </div>
+                <span class="icon"><img src="/Assets/heart icon.svg" alt=""></span>
+                <a href="cart.html"><span class="icon"><img src="/Assets/shopping bag.svg" alt=""></span></a>
+            </div>
+        </nav>
+    </section>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <p>Wait times may be longer than usual due to high contact volume. Thanks for your patience.</p>
+
+        <div class="contact-options">
+            <div class="contact-option" style="height: 200px; border-radius: 50px;">
+                <div class="icon"><img src="/Assets/message-icon.png" alt=""></div>
+                <h3>Chat with us</h3>
+                <p>Products & Orders: 4 am - 11 pm PT<br>
+                    7 days a week</p>
+            </div>
+
+            <div class="contact-option" style="height: 410px; border-radius: 50px;">
+                <div class="icon"><img src="/Assets/cell-phone.jpg" alt="" style="width: 170px;"></div>
+                <h3>Call us</h3>
+                <p>1-800-806-6453</p>
+                <p>Products & Orders: 4 am - 11 pm PT, 7 days a week</p>
+                <p>NRC, NTC & SWOOSH: 8 am - 5 pm PT, Mon - Fri</p>
+                <p>Company Info & Inquiries: 7 am - 4 pm PT, Mon - Fri</p>
+            </div>
+
+            <div class="contact-option" style="height: 200px; border-radius: 50px;">
+                <div class="icon"><img src="/Assets/location.jpg" alt=""></div>
+                <h3>Find a Store</h3>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCartIcon() {
+                const cartIcon = document.querySelector('.nav-icons .icon img[src="/Assets/shopping bag.svg"]');
+                let cartCount = document.querySelector('.cart-count');
+                if (!cartCount) {
+                    cartCount = document.createElement('span');
+                    cartCount.classList.add('cart-count');
+                    cartIcon.parentElement.appendChild(cartCount);
+                }
+                cartCount.textContent = cart.length;
+            }
+
+            function addToCart(product) {
+                cart.push(product);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartIcon();
+            }
+
+            document.querySelectorAll('.add-to-bag-button').forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productCard = event.target.closest('.product-card');
+                    const product = {
+                        name: productCard.querySelector('.product-name').textContent,
+                        price: productCard.querySelector('.product-price').textContent,
+                        image: productCard.querySelector('img').src
+                    };
+                    addToCart(product);
+                });
+            });
+
+            updateCartIcon();
+        });
+    </script>
+</body>
+
+</html>

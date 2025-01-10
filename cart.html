@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shopping Cart</title>
+</head>
+<style>
+    body {
+        font-family: sans-serif;
+        background-color: #f0f0f0;
+    }
+
+    .container {
+        margin-left: 200px;
+        margin-right: 200px;
+        padding: 20px;
+        margin-top: 100px;
+        border: 1px solid rgb(204, 204, 204);
+        background-color: #fff;
+    }
+
+    .cart-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
+
+    .cart-item img {
+        margin-top: 20px;
+        width: 150px;
+        height: 150px;
+        border-radius: 5px;
+        margin-right: 20px;
+    }
+
+    .item-details {
+        flex-grow: 1;
+    }
+
+    .item-details h2 {
+        margin: 0;
+        font-size: 18px;
+    }
+
+    .item-details p {
+        margin: 5px 0;
+    }
+
+    .remove-btn {
+        background-color: #000000;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        padding: 10px;
+        cursor: pointer;
+
+    }
+
+    .remove-btn:hover {
+        background-color: #2b2b2b;
+    }
+
+    .summary-item {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .summary-item img {
+        width: 60px;
+        margin-top: 7px;
+        margin-left: 10px;
+        height: 60px;
+    }
+
+    button {
+        background-color: #000000;
+        color: #ffffff;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    button:hover {
+        background-color: #2b2b2b;
+    }
+
+    .logo {
+        display: flex;
+    }
+
+    .logo img {
+        display: flex;
+        width: 80px;
+    }
+
+    #subtotal {
+        margin-top: 20px;
+        font-size: large;
+        font-weight: bolder;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <a href="Mainpage.html"><img src="/Assets/nike logo.png" alt=""></a>
+            <a href="Mainpage.html"><img src="/Assets/jordan logo.svg" alt="">
+        </div></a>
+        <div class="summary-item">
+            <h1>Cart</h1>
+            <img src="/Assets/Cart.png" alt="">
+        </div>
+        <div id="cart-items"></div>
+        <div id="subtotal"></div>
+        <a href="checkout-page.html"><button>Checkout</button></a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            function updateCartIcon() {
+                const cartIcon = document.querySelector('.nav-icons .icon img[src="/Assets/shopping bag.svg"]');
+                if (!cartIcon) return; // Ensure cartIcon exists
+                let cartCount = document.querySelector('.cart-count');
+                if (!cartCount) {
+                    cartCount = document.createElement('span');
+                    cartCount.classList.add('cart-count');
+                    cartIcon.parentElement.appendChild(cartCount);
+                }
+                cartCount.textContent = cart.length;
+            }
+
+            function loadCartItems() {
+                const cartContainer = document.getElementById('cart-items');
+                cartContainer.innerHTML = '';
+                cart.forEach(item => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="item-details">
+                            <h2>${item.name}</h2>
+                            <p>Price: ${item.price}</p>
+                            <p>Quantity: 1</p>
+                            <button class="remove-btn" data-name="${item.name}">Remove</button>
+                        </div>
+                    `;
+                    cartContainer.appendChild(cartItem);
+                });
+                updateCartSummary();
+                attachRemoveEventListeners();
+            }
+
+            function attachRemoveEventListeners() {
+                const removeButtons = document.querySelectorAll('.remove-btn');
+                removeButtons.forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const productName = event.target.getAttribute('data-name');
+                        removeFromCart(productName);
+                    });
+                });
+            }
+
+            function removeFromCart(productName) {
+                const index = cart.findIndex(item => item.name === productName);
+                if (index !== -1) {
+                    cart.splice(index, 1);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    loadCartItems();
+                    updateCartIcon();
+                }
+            }
+
+            function updateCartSummary() {
+                const subtotalElement = document.getElementById('subtotal');
+                const subtotal = cart.reduce((total, item) => total + parseFloat(item.price.replace('$', '')), 0);
+                subtotalElement.textContent = `$${subtotal.toFixed(2)} incl. VAT`;
+            }
+
+            updateCartIcon();
+            loadCartItems();
+        });
+    </script>
+</body>
+
+</html>

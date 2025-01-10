@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nike Sign-In/Join</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 10px;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .location {
+            text-align: left;
+            margin-bottom: 20px;
+
+        }
+
+        .location select {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+
+        }
+
+        input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+
+        }
+
+        .required {
+            color: red;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .agreement {
+            margin-top: 15px;
+        }
+
+        button {
+            background-color: #000;
+            color: #fff;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            margin-top: 30px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        a {
+
+            color: #444444;
+        }
+
+        .logo img {
+            width: 4vw;
+        }
+    </style>
+    <link rel="shortcut icon" href="/Assets/nike logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <a href="/Mainpage.html"><img src="/Assets/nike logo.png" alt="">
+                <img src="/Assets/jordan logo.svg" alt=""></a>
+        </div>
+        <h1>Sign In Or if you dont have account then <a href="signupform.html">Join Us</a></h1>
+
+        <div class="location">
+            Pakistan <a href="#">Change</a>
+        </div>
+
+        <input type="email" id="email" placeholder="Email*" required>
+        <input type="password" id="password" placeholder="password*" required>
+        <span class="required">Required</span>
+
+        <div class="agreement">
+            By continuing, I agree to Nike's <a href="#">Privacy Policy</a> and <a href="#">Terms of Use</a>.
+        </div>
+
+        <button id="signin">Continue</button></a>
+    </div>
+    <script>
+        const signinButton = document.getElementById('signin');
+        signinButton.addEventListener('click', () => {
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert("Please fill in all required fields.");
+                return;
+            }
+
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+
+            let userFound = false;
+            users.forEach(user => {
+                if (user.email === email && user.password === password) {
+                    userFound = true;
+                }
+            });
+
+
+
+            if (userFound) {
+                alert("Sign-in successful!");
+                window.location.href = "/Mainpage.html";
+            } else {
+                alert("Invalid email or password.");
+            }
+        });
+    </script>
+</body>
+
+</html>

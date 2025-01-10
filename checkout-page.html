@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nike Checkout</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .checkout-section {
+            margin-bottom: 20px;
+        }
+
+        .checkout-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .checkout-section table th,
+        .checkout-section table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .checkout-section table th {
+            background-color: #f2f2f2;
+        }
+
+        .checkout-section .subtotal {
+            font-weight: bold;
+        }
+
+        .shipping-address {
+            margin-bottom: 20px;
+        }
+
+        .shipping-address label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .shipping-address input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .payment-methods {
+            margin-bottom: 20px;
+        }
+
+        .payment-methods label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .payment-methods input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: black;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .container img {
+            width: 6vw;
+        }
+
+        .payment-methods img {
+            width: 20px;
+            border-radius: 20%;
+        }
+    </style>
+    <link rel="shortcut icon" href="/Assets/nike logo.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="Mainpage.html"><img src="/Assets/nike logo.png" alt=""></a>
+        <a href="Mainpage.html"><img src="/Assets/jordan logo.svg" alt=""></a>
+        <h1>Checkout</h1>
+
+        <div class="checkout-section">
+            <h3>Order Summary</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Nike Air Max 90</td>
+                        <td>1</td>
+                        <td>$120.00</td>
+                    </tr>
+                    <tr>
+                        <td>Nike T-Shirt</td>
+                        <td>2</td>
+                        <td>$30.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="subtotal">Subtotal</td>
+                        <td>$150.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Shipping</td>
+                        <td>$10.00</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><strong>Total</strong></td>
+                        <td><strong>$160.00</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="checkout-section">
+            <h3>Shipping Address</h3>
+            <div class="shipping-address">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" required>
+            </div>
+            <div class="shipping-address">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" required>
+            </div>
+            <div class="shipping-address">
+                <label for="address">Address:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="shipping-address">
+                <label for="city">City:</label>
+                <input type="text" id="city" required>
+            </div>
+            <div class="shipping-address">
+                <label for="postalCode">Postal Code:</label>
+                <input type="text" id="postalCode" required>
+            </div>
+        </div>
+
+        <div class="checkout-section">
+            <h3>Payment Method</h3>
+            <div class="payment-methods">
+                <label>
+                    <input type="radio" name="paymentMethod" value="creditCard"> <img src="/Assets/credit-card.png"
+                        alt=""> Credit Card
+                </label>
+            </div>
+            <div class="payment-methods">
+                <label>
+                    <input type="radio" name="paymentMethod" value="paypal"> <img src="/Assets/paypal.jpg" alt="">
+                    PayPal
+                </label>
+            </div>
+        </div>
+
+        <a href="Mainpage.html"><button>Place Order</button></a>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        function updateCartIcon() {
+            const cartIcon = document.querySelector('.nav-icons .icon img[src="/Assets/shopping bag.svg"]');
+            if (!cartIcon) return; // Ensure cartIcon exists
+            let cartCount = document.querySelector('.cart-count');
+            if (!cartCount) {
+                cartCount = document.createElement('span');
+                cartCount.classList.add('cart-count');
+                cartIcon.parentElement.appendChild(cartCount);
+            }
+            cartCount.textContent = cart.length;
+        }
+
+        function loadCartItems() {
+            const cartContainer = document.getElementById('cart-items');
+            cartContainer.innerHTML = '';
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h2>${item.name}</h2>
+                        <p>Price: ${item.price}</p>
+                        <p>Quantity: 1</p>
+                        <button class="remove-btn" data-name="${item.name}">Remove</button>
+                    </div>
+                `;
+                cartContainer.appendChild(cartItem);
+            });
+            updateCartSummary();
+            attachRemoveEventListeners();
+        }
+
+        function attachRemoveEventListeners() {
+            const removeButtons = document.querySelectorAll('.remove-btn');
+            removeButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const productName = event.target.getAttribute('data-name');
+                    removeFromCart(productName);
+                });
+            });
+        }
+
+        function removeFromCart(productName) {
+            const index = cart.findIndex(item => item.name === productName);
+            if (index !== -1) {
+                cart.splice(index, 1);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                loadCartItems();
+                updateCartIcon();
+            }
+        }
+
+        function updateCartSummary() {
+            const subtotalElement = document.getElementById('subtotal');
+            const subtotal = cart.reduce((total, item) => total + parseFloat(item.price.replace('$', '')), 0);
+            subtotalElement.textContent = `$${subtotal.toFixed(2)} incl. VAT`;
+        }
+
+        updateCartIcon();
+        loadCartItems();
+    });
+    </script>
+</body>
+</html>
